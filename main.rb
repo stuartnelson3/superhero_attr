@@ -1,6 +1,3 @@
-# => { :flight => { :speed => "900 kph", :height => "40 miles" },
-#      :super_vision => { :viable_media => ["wood", "stone", "iron"},
-#      :steely_demeanor => "" }
 module HeroAttributes
   def self.included(base)
     base.extend(ClassMethods)
@@ -25,19 +22,8 @@ module HeroAttributes
 end
 
 class Errors
-  class NoAttributesGiven < StandardError; end
+  class NoAttributesGiven < StandardError;end
 end
 
 require 'ostruct'
 class Ability < OpenStruct;end
-
-class FlyingSuperhero
-  include HeroAttributes
-  ability :flight do |f|
-    f.speed = "900 kph"
-    f.height = "40 miles"
-  end
-  ability :super_vision do |sv|
-    sv.viable_media = ["wood", "stone", "iron"]
-  end
-end
