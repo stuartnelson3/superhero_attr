@@ -17,11 +17,28 @@ describe FlyingSuperhero do
                :flight => { :speed => "900 kph", :height => "40 miles" },
                :super_vision => { :viable_media => ["wood", "stone", "iron"]}
               }
-  it "should respond to #abilities" do
-    hero.respond_to?(:abilities).should be_true
+
+  context "abilities basics" do
+    it "should respond to #abilities" do
+      hero.respond_to?(:abilities).should be_true
+    end
+
+    it "should have the right abilities" do
+      hero.abilities.should eq(abilities)
+    end
   end
 
-  it "should have the right abilities" do
-    hero.abilities.should eq(abilities)
+  context "assigned abilities" do
+    it "should respond to #flight" do
+      hero.respond_to?(:flight).should be_true
+    end
+
+    it "should respond to #super_vision" do
+      hero.respond_to?(:super_vision).should be_true
+    end
+
+    it "should return the correct hash of attributes" do
+      hero.super_vision.should eq({viable_media: ["wood", "stone", "iron"]})
+    end
   end
 end

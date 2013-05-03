@@ -13,6 +13,7 @@ module HeroAttributes
       ability = Ability.new
       block.call ability
       abilities.merge!({ ability_name => ability.to_h })
+      define_method(ability_name) { abilities[ability_name] }
     end
 
     def abilities
