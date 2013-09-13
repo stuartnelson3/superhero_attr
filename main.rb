@@ -8,10 +8,10 @@ module HeroAttributes
   end
 
   module ClassMethods
-    def ability(ability_name, &block)
-      raise Errors::NoAttributesGiven, "Must specify attributes for ability" if block.nil?
+    def ability(ability_name)
+      raise Errors::NoAttributesGiven, "Must specify attributes for ability" unless block_given?
       ability = Ability.new
-      block.call ability
+      yield ability
       abilities.merge!({ ability_name => ability.to_h })
       define_method(ability_name) { abilities[ability_name] }
     end
